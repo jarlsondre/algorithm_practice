@@ -1,8 +1,6 @@
 import timeit
 from random import sample
-from numba import jit
 
-#@jit(nopython=True)
 def partition(arr, low, high):
     # Choosing the last element as pivot
     pivot = arr[high]
@@ -22,7 +20,6 @@ def partition(arr, low, high):
     return from_left
 
 
-#@jit(nopython=True)
 def quicksort(arr, low, high): 
     if high <= low:
         return
@@ -31,14 +28,10 @@ def quicksort(arr, low, high):
     quicksort(arr, pivot, high)
 
 
-integers = [*range(1000000)]
+integers = [*range(100000)]
 random_integers = sample(integers, len(integers))
-integers2 = [*range(1000000)]
-random_integers2 = sample(integers, len(integers))
 
 def main():
-    quicksort(random_integers2[0:100], 0, len(random_integers[0:100]) - 1)
-    print(f"{random_integers[0:100]}")
     time = timeit.timeit('quicksort(random_integers, 0, len(random_integers) - 1)', 'from __main__ import quicksort, random_integers', number=1)
     print(f"time was: {time}")
     
